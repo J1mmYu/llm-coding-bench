@@ -1,0 +1,44 @@
+task_id,language,difficulty,passed,total,status,note
+Ada/0001,Ada,easy,0,2,COMPILE_ERROR,"b~main.adb:277:01: declaration expected
+gnatmake: *** link failed.
+"
+Ada/0002,Ada,easy,0,1,COMPILE_ERROR,"b~main.ads:406:23: illegal character
+gnatmake: *** link failed.
+"
+Ada/0003,Ada,hard,0,15,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""solution.adb""
+main.adb:19:11: no candidate interpretations match the actuals:
+main.adb:19:11: missing argument for parameter ""Ite"
+Ada/0004,Ada,hard,0,12,COMPILE_ERROR,"gnatmake: *** link failed.
+"
+Ada/0005,Ada,hard,0,10,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""longest_increasing_subsequence.adb""
+b~main.ads:257:58: missing ""end ada_main;""
+gnatmake: *** link failed.
+"
+Ada/0006,Ada,hard,0,12,COMPILE_ERROR,"b~main.adb:8:14: file ""b~main.ads"" not found
+gnatmake: *** link failed.
+"
+Ada/0007,Ada,hard,0,10,COMPILE_ERROR,"main.adb:14:04: no candidate interpretations match the actuals:
+main.adb:14:04: missing argument for parameter ""Item"" in call to ""Get"" declared at a-textio.ads:451
+main.adb:14:04: missing argument for"
+Ada/0008,Ada,hard,0,12,COMPILE_ERROR,"b~main.ads:317:50: missing ""end ada_main;""
+gnatmake: *** link failed.
+"
+Ada/0009,Ada,hard,0,25,COMPILE_ERROR,"b~main.ads:462:01: illegal character
+b~main.ads:496:01: duplicate end line ignored
+gnatmake: *** link failed.
+"
+Ada/0010,Ada,hard,0,8,FAIL,
+Ada/0011,Ada,hard,0,12,COMPILE_ERROR,"main.adb:27:04: no candidate interpretations match the actuals:
+main.adb:27:04: missing argument for parameter ""Item"" in call to ""Get"" declared at a-textio.ads:451
+main.adb:27:04: missing argument for"
+Ada/0012,Ada,hard,0,10,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""rle.adb""
+gnatmake: ""main.ali"" WARNING: ALI or object file not found after compile
+gnatmake: ""main.ali"" not found
+gnatmake: ""/work"
+Ada/0013,Ada,hard,0,10,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""big_int_sum.adb""
+fatal error: file main.ali is incorrectly formatted
+make sure you are using consistent versions of gcc/gnatbind
+"
+Ada/0014,Ada,hard,0,9,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""topological_sort.adb""
+main.adb:23:10: no candidate interpretations match the actuals:
+main.adb:23:10: missing argument for parame"

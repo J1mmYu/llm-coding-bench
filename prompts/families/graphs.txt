@@ -1,0 +1,10 @@
+Read n m then m edges (1-indexed); print degree of each node on one line.
+Read n m then m edges; print 1 if the graph is connected (undirected), else 0.
+Read n m then m edges; run BFS from node 1; print distances (−1 if unreachable).
+Read n m then m edges; run DFS and print a topological order if DAG, else -1.
+Read n m then m weighted edges; run Dijkstra from node 1; print distances (INF as -1).
+Read n m then m edges; print number of connected components.
+Read n m then m edges; print 1 if graph has a cycle (undirected), else 0.
+Read n m then m edges; print 1 if bipartite else 0.
+Read n m then m edges; print sizes of all connected components increasing by size.
+Read n m then m edges; given q queries "u v", print 1 if same component else 0 (DSU).

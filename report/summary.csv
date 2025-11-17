@@ -1,0 +1,75 @@
+task_id,language,difficulty,passed,total,status,note
+Ada/0001,Ada,easy,0,2,COMPILE_ERROR,"/usr/bin/ld: b~main.o: in function `main':
+b~main.adb:(.text+0x477): undefined reference to `_ada_main'
+/usr/bin/ld: ./main.o: in function `no symbol':
+:(.text+0xe): undefined reference to `'
+collect"
+Ada/0002,Ada,easy,0,1,COMPILE_ERROR,"/usr/bin/ld: b~main.o: in function `main':
+b~main.adb:(.text+0x477): undefined reference to `_ada_main'
+/usr/bin/ld: ./main.o: in function `no symbol':
+:(.text+0xe): undefined reference to `'
+collect"
+COBOL/0001,COBOL,easy,2,2,OK,
+COBOL/0002,COBOL,easy,1,1,OK,
+COBOL/0003,COBOL,hard,0,10,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0003/Main.cob:1: error: invalid indicator 'F' at column 7
+/work/.workdir_parallel/COBOL_0003/Main.cob:2: error: invalid indicator 'M' at column 7
+/work/.workdir_parallel/"
+COBOL/0004,COBOL,hard,0,14,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0004/Main.cob:1: error: invalid indicator 'F' at column 7
+/work/.workdir_parallel/COBOL_0004/Main.cob:2: error: invalid indicator 'M' at column 7
+/work/.workdir_parallel/"
+COBOL/0005,COBOL,hard,0,10,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0005/Main.cob:1: error: invalid indicator 'F' at column 7
+/work/.workdir_parallel/COBOL_0005/Main.cob:2: error: invalid indicator 'M' at column 7
+/work/.workdir_parallel/"
+COBOL/0006,COBOL,hard,9,10,FAIL,
+COBOL/0007,COBOL,hard,0,9,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0007/Main.cob:1: error: invalid indicator 'F' at column 7
+/work/.workdir_parallel/COBOL_0007/Main.cob:2: error: invalid indicator 'M' at column 7
+/work/.workdir_parallel/"
+COBOL/0008,COBOL,hard,0,9,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0008/Main.cob:1: error: invalid indicator 'F' at column 7
+/work/.workdir_parallel/COBOL_0008/Main.cob:2: error: invalid indicator 'M' at column 7
+/work/.workdir_parallel/"
+COBOL/0009,COBOL,hard,0,17,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0009/Main.cob:1: error: invalid indicator 'F' at column 7
+/work/.workdir_parallel/COBOL_0009/Main.cob:2: error: invalid indicator 'M' at column 7
+/work/.workdir_parallel/"
+Fortran/0001,Fortran,easy,3,3,OK,
+Fortran/0002,Fortran,easy,2,2,OK,
+Fortran/0003,Fortran,hard,2,10,FAIL,
+Fortran/0004,Fortran,hard,13,14,FAIL,
+Fortran/0005,Fortran,hard,9,10,FAIL,
+Fortran/0006,Fortran,hard,13,13,OK,
+Fortran/0007,Fortran,hard,9,9,OK,
+Fortran/0008,Fortran,hard,10,10,OK,
+Fortran/0009,Fortran,hard,20,20,OK,
+Fortran/0010,Fortran,hard,5,8,FAIL,
+Fortran/0011,Fortran,hard,0,9,FAIL,
+Fortran/0012,Fortran,hard,12,14,FAIL,
+Fortran/0013,Fortran,hard,5,10,FAIL,
+Fortran/0014,Fortran,hard,4,8,FAIL,
+Fortran/0015,Fortran,hard,10,10,OK,
+Fortran/0016,Fortran,hard,15,15,OK,
+Fortran/0017,Fortran,hard,14,15,FAIL,
+Octave/0001,Octave,easy,2,2,OK,
+Octave/0002,Octave,easy,1,1,OK,
+Prolog/0001,Prolog,easy,2,2,OK,
+Prolog/0002,Prolog,easy,1,1,OK,
+Python/0001,Python,easy,3,3,OK,
+Python/0002,Python,easy,2,2,OK,
+Python/0003,Python,hard,10,10,OK,
+Python/0004,Python,hard,11,12,FAIL,
+Python/0005,Python,hard,7,8,FAIL,
+Python/0006,Python,hard,10,10,OK,
+Python/0007,Python,hard,10,10,OK,
+Python/0008,Python,hard,8,8,OK,
+Python/0009,Python,hard,16,16,OK,
+Python/0010,Python,hard,7,8,FAIL,
+Python/0011,Python,hard,2,11,FAIL,
+Python/0012,Python,hard,12,13,FAIL,
+Python/0013,Python,hard,10,10,OK,
+Python/0014,Python,easy,9,9,OK,
+Python/0015,Python,easy,10,10,OK,
+Python/0016,Python,hard,9,9,OK,
+Python/0017,Python,easy,8,8,OK,
+Python/0018,Python,hard,8,8,OK,
+Python/0019,Python,easy,13,13,OK,
+Python/0020,Python,hard,13,13,OK,
+Python/0021,Python,easy,8,10,FAIL,
+Python/0022,Python,hard,11,12,FAIL,

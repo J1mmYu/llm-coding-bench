@@ -1,0 +1,10 @@
+Read an integer n; print the sum 1..n.
+Read two integers a b; print gcd(a,b).
+Read an integer n; print n! modulo 1_000_000_007.
+Read an integer n; print the number of set bits in n.
+Read an integer n; print 1 if n is prime, else 0 (deterministic for 32-bit).
+Read an integer n; print Fibonacci(n) modulo 1_000_000_007 (0-indexed).
+Read an integer n; print the sum of digits of n.
+Read n then n integers; print the count of primes among them.
+Read two integers a b; print lcm(a,b).
+Read an integer n; print the largest power of two ≤ n.

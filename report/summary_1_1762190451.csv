@@ -1,0 +1,168 @@
+task_id,language,difficulty,passed,total,status,note
+Ada/0001,Ada,easy,0,2,COMPILE_ERROR,"b~main.ads:206:49: illegal character
+gnatmake: *** link failed.
+"
+Ada/0002,Ada,easy,0,1,COMPILE_ERROR,"b~main.ads:415:01: illegal character
+gnatmake: *** link failed.
+"
+Ada/0003,Ada,hard,0,15,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""solution.adb""
+main.adb:19:11: no candidate interpretations match the actuals:
+main.adb:19:11: missing argument for parameter ""Ite"
+Ada/0004,Ada,hard,0,12,COMPILE_ERROR,"b~main.adb:123:01: illegal character
+b~main.adb:125:28: missing "";""
+b~main.adb:126:07: misplaced ""return"" statement
+b~main.adb:165:01: duplicate end line ignored
+gnatmake: *** link failed.
+"
+Ada/0005,Ada,hard,0,10,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""longest_increasing_subsequence.adb""
+b~main.adb:84:01: illegal character
+gnatmake: *** link failed.
+"
+Ada/0006,Ada,hard,0,12,FAIL,
+Ada/0007,Ada,hard,0,10,COMPILE_ERROR,"main.adb:14:04: no candidate interpretations match the actuals:
+main.adb:14:04: missing argument for parameter ""Item"" in call to ""Get"" declared at a-textio.ads:451
+main.adb:14:04: missing argument for"
+Ada/0008,Ada,hard,0,12,COMPILE_ERROR,"b~main.ads:1:01: illegal character
+b~main.ads:2:18: illegal character
+gnatmake: *** link failed.
+"
+Ada/0009,Ada,hard,0,25,COMPILE_ERROR,"b~main.adb:188:01: statement expected
+gnatmake: *** link failed.
+"
+Ada/0010,Ada,hard,0,8,COMPILE_ERROR,"b~main.ads:393:21: illegal character
+gnatmake: *** link failed.
+"
+Ada/0011,Ada,hard,0,12,COMPILE_ERROR,"main.adb:27:04: no candidate interpretations match the actuals:
+main.adb:27:04: missing argument for parameter ""Item"" in call to ""Get"" declared at a-textio.ads:451
+main.adb:27:04: missing argument for"
+Ada/0012,Ada,hard,0,10,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""rle.adb""
+b~main.adb:206:01: illegal character
+b~main.adb:207:07: declarations must come before ""begin""
+b~main.adb:208:28: missing"
+Ada/0013,Ada,hard,0,10,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""big_int_sum.adb""
+fatal error: file main.ali is incorrectly formatted
+make sure you are using consistent versions of gcc/gnatbind
+"
+Ada/0014,Ada,hard,0,9,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""topological_sort.adb""
+main.adb:23:10: no candidate interpretations match the actuals:
+main.adb:23:10: missing argument for parame"
+Ada/0015,Ada,hard,0,8,COMPILE_ERROR,"main.adb:4:11: warning: file name does not match unit name, should be ""max_distinct.adb""
+x86_64-linux-gnu-gnatbind-10: Cannot open: ./main.ali
+gnatmake: *** bind failed.
+"
+Ada/0016,Ada,hard,0,12,COMPILE_ERROR,"main.adb:10:25: missing ""return""
+gnatmake: ""/work/.workdir_parallel/Ada_0016/main.adb"" compilation error
+"
+Ada/0017,Ada,hard,0,20,COMPILE_ERROR,"fatal error: file main.ali is incorrectly formatted
+make sure you are using consistent versions of gcc/gnatbind
+1.
+     |
+gnatmake: *** bind failed.
+"
+COBOL/0001,COBOL,easy,2,2,OK,
+COBOL/0002,COBOL,easy,1,1,OK,
+COBOL/0003,COBOL,hard,0,10,FAIL,
+COBOL/0004,COBOL,hard,13,14,FAIL,
+COBOL/0005,COBOL,hard,0,10,FAIL,
+COBOL/0006,COBOL,hard,9,10,FAIL,
+COBOL/0007,COBOL,hard,9,9,OK,
+COBOL/0008,COBOL,hard,1,9,FAIL,
+COBOL/0009,COBOL,hard,17,17,OK,
+COBOL/0010,COBOL,hard,1,8,FAIL,
+COBOL/0011,COBOL,hard,0,10,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0011/Main.cob:16: error: syntax error, unexpected COUNT
+/work/.workdir_parallel/COBOL_0011/Main.cob:46: error: syntax error, unexpected COUNT
+/work/.workdir_parallel/COBO"
+COBOL/0012,COBOL,hard,0,12,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0012/Main.cob:11: error: syntax error, unexpected COUNT
+/work/.workdir_parallel/COBOL_0012/Main.cob:24: error: syntax error, unexpected TO
+/work/.workdir_parallel/COBOL_0"
+COBOL/0013,COBOL,hard,0,8,FAIL,
+COBOL/0014,COBOL,hard,0,8,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0014/Main.cob:12: error: syntax error, unexpected COUNT
+/work/.workdir_parallel/COBOL_0014/Main.cob:24: error: syntax error, unexpected QUEUE
+/work/.workdir_parallel/COBO"
+COBOL/0015,COBOL,hard,6,10,FAIL,
+COBOL/0016,COBOL,hard,0,13,COMPILE_ERROR,"/work/.workdir_parallel/COBOL_0016/Main.cob:8: error: syntax error, unexpected POS
+/work/.workdir_parallel/COBOL_0016/Main.cob: in paragraph 'MAIN-PROCEDURE':
+/work/.workdir_parallel/COBOL_0016/Main.c"
+COBOL/0017,COBOL,hard,1,14,FAIL,
+Fortran/0001,Fortran,easy,3,3,OK,
+Fortran/0002,Fortran,easy,2,2,OK,
+Fortran/0003,Fortran,hard,2,10,FAIL,
+Fortran/0004,Fortran,hard,13,14,FAIL,
+Fortran/0005,Fortran,hard,9,10,FAIL,
+Fortran/0006,Fortran,hard,13,13,OK,
+Fortran/0007,Fortran,hard,9,9,OK,
+Fortran/0008,Fortran,hard,10,10,OK,
+Fortran/0009,Fortran,hard,20,20,OK,
+Fortran/0010,Fortran,hard,5,8,FAIL,
+Fortran/0011,Fortran,hard,0,9,FAIL,
+Fortran/0012,Fortran,hard,12,14,FAIL,
+Fortran/0013,Fortran,hard,5,10,FAIL,
+Fortran/0014,Fortran,hard,4,8,FAIL,
+Fortran/0015,Fortran,hard,10,10,OK,
+Fortran/0016,Fortran,hard,15,15,OK,
+Fortran/0017,Fortran,hard,14,15,FAIL,
+Fortran/0018,Fortran,easy,10,10,OK,
+Fortran/0019,Fortran,easy,8,8,OK,
+Fortran/0020,Fortran,easy,8,10,FAIL,
+Fortran/0021,Fortran,easy,1,8,FAIL,
+Fortran/0022,Fortran,easy,9,10,FAIL,
+Fortran/0023,Fortran,easy,8,8,OK,
+Fortran/0024,Fortran,easy,6,8,FAIL,
+Fortran/0025,Fortran,easy,14,14,OK,
+Fortran/0026,Fortran,easy,1,10,FAIL,
+Fortran/0027,Fortran,easy,12,12,OK,
+Octave/0001,Octave,easy,2,2,OK,
+Octave/0002,Octave,easy,1,1,OK,
+Octave/0003,Octave,hard,1,10,FAIL,
+Octave/0004,Octave,hard,17,18,FAIL,
+Octave/0005,Octave,hard,1,10,FAIL,
+Octave/0006,Octave,hard,8,10,FAIL,
+Octave/0007,Octave,hard,3,8,FAIL,
+Octave/0008,Octave,hard,1,12,FAIL,
+Octave/0009,Octave,hard,19,22,FAIL,
+Octave/0010,Octave,hard,0,8,FAIL,
+Octave/0011,Octave,hard,1,10,FAIL,
+Octave/0012,Octave,hard,13,16,FAIL,
+Octave/0013,Octave,hard,5,8,FAIL,
+Octave/0014,Octave,hard,1,8,FAIL,
+Octave/0015,Octave,hard,12,12,OK,
+Octave/0016,Octave,hard,10,12,FAIL,
+Prolog/0001,Prolog,easy,2,2,OK,
+Prolog/0002,Prolog,easy,1,1,OK,
+Prolog/0003,Prolog,hard,0,9,FAIL,
+Prolog/0004,Prolog,hard,10,10,OK,
+Prolog/0005,Prolog,hard,10,12,FAIL,
+Prolog/0006,Prolog,hard,6,10,FAIL,
+Prolog/0007,Prolog,hard,10,10,OK,
+Prolog/0008,Prolog,hard,10,10,OK,
+Prolog/0009,Prolog,hard,16,16,OK,
+Prolog/0010,Prolog,hard,9,9,OK,
+Prolog/0011,Prolog,hard,0,10,FAIL,
+Prolog/0012,Prolog,hard,10,10,OK,
+Prolog/0013,Prolog,hard,3,9,FAIL,
+Prolog/0014,Prolog,hard,0,9,FAIL,
+Prolog/0015,Prolog,hard,10,10,OK,
+Prolog/0016,Prolog,hard,12,13,FAIL,
+Prolog/0017,Prolog,hard,14,15,FAIL,
+Python/0001,Python,easy,3,3,OK,
+Python/0002,Python,easy,2,2,OK,
+Python/0003,Python,hard,10,10,OK,
+Python/0004,Python,hard,11,12,FAIL,
+Python/0005,Python,hard,7,8,FAIL,
+Python/0006,Python,hard,10,10,OK,
+Python/0007,Python,hard,10,10,OK,
+Python/0008,Python,hard,8,8,OK,
+Python/0009,Python,hard,16,16,OK,
+Python/0010,Python,hard,7,8,FAIL,
+Python/0011,Python,hard,2,11,FAIL,
+Python/0012,Python,hard,12,13,FAIL,
+Python/0013,Python,hard,10,10,OK,
+Python/0014,Python,easy,9,9,OK,
+Python/0015,Python,easy,10,10,OK,
+Python/0016,Python,hard,9,9,OK,
+Python/0017,Python,easy,8,8,OK,
+Python/0018,Python,hard,8,8,OK,
+Python/0019,Python,easy,13,13,OK,
+Python/0020,Python,hard,13,13,OK,
+Python/0021,Python,easy,8,10,FAIL,
+Python/0022,Python,hard,11,12,FAIL,

@@ -1,0 +1,10 @@
+Read a string; print it reversed.
+Read a string; print the number of vowels (aeiou, case-insensitive).
+Read a string; print 1 if it is a palindrome ignoring non-alphanumerics and case, else 0.
+Read a string; toggle case of each letter (a↔A) and print.
+Read a string; print the first non-repeating character, or -1 if none.
+Read a string; remove vowels and print the result.
+Read a string; print the number of digits in it.
+Read a string; print YES if it contains "abc" as a substring, else NO.
+Read a string; compress consecutive spaces into a single space and print.
+Read a string; convert camelCase to snake_case and print (ASCII letters/digits only).

@@ -1,0 +1,10 @@
+Read all input; print the number of lines, words, and bytes like `wc` (assume ASCII).
+Read k then k lines; print the longest line length.
+Read a matrix n m then n lines; print its transpose (m lines).
+Read n then n integers; print them sorted ascending on one line separated by spaces.
+Read a histogram (n then n integers); print the area of the largest rectangle.
+Read n then n integers; print LIS length (O(n log n)).
+Read two sorted arrays; print their merged array.
+Read n then n pairs (x y); print the pair with minimal y (break ties by x).
+Read n then n strings; print them lexicographically (stable).
+Read n then n integers; print 1 if any two sum to target t, else 0.

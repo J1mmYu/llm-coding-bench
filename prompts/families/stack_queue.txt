@@ -1,0 +1,10 @@
+Read q then q operations "push x"/"pop"/"front"; simulate a queue and print outputs of "front".
+Read q then q operations "push x"/"pop"/"top"; simulate a stack and print outputs of "top".
+Read q then q operations "enqueue x"/"dequeue"; print dequeued values or -1 on empty.
+Read q operations of a min-stack (push x/pop/min); print results of "min".
+Read q operations for a deque (push_front x/push_back x/pop_front/pop_back); print outputs of pops.
+Read a sequence of parentheses; print 1 if balanced else 0.
+Read q operations to maintain a multiset (add x/remove x/count x); print counts for "count".
+Read q operations to maintain running median; print median after each insert (lower if even).
+Read q operations to maintain a sliding window of size k over integers; print window sums per step.
+Read q operations to implement a simple LRU cache (get/put); print outputs of get.

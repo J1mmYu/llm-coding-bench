@@ -1,0 +1,10 @@
+Read an arithmetic expression of + - * / and non-negative integers; print its value (integer division toward zero).
+Read a postfix (RPN) expression with spaces; evaluate and print result.
+Read a boolean expression with parentheses and operators AND/OR/NOT; print 1 or 0.
+Read an expression with + and *; assume standard precedence; print result.
+Read an expression with integers and ^ for power; right-associative; print result (mod 1_000_000_007).
+Read a string of digits; insert '+' between some digits to reach a target t; print 1 if possible else 0.
+Read a polynomial as coefficients a0..ak and x; print the value using Horner's method.
+Read a fraction a/b simplified; then read c/d; print (a/b + c/d) in lowest terms.
+Read an expression with parentheses only; print the maximum nesting depth.
+Read an expression; print YES if parentheses are balanced, else NO.

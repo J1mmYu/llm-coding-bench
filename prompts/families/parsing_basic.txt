@@ -1,0 +1,10 @@
+Read a line with comma-separated integers (optional spaces); print their sum.
+Read a line with space-separated integers; print their product modulo 1_000_000_007.
+Read a line with mixed spaces and commas as delimiters; print count of numbers parsed.
+Read a line; split by semicolons; print the longest field's length.
+Read a line; collapse multiple delimiters (space/comma/semicolon) to a single space and print.
+Read a line of CSV with quoted fields (quotes may contain commas); print number of fields.
+Read a line; print the number of words (contiguous non-space sequences).
+Read a line; replace commas and semicolons with a single space, then print.
+Read a line; print YES if it is a valid IPv4 with no leading zeros (except zero), else NO.
+Read a line; print the sum of signed integers that appear in it.

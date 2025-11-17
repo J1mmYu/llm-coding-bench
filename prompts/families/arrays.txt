@@ -1,0 +1,10 @@
+Read n then n integers; print the maximum.
+Read n then n integers; print the number of distinct values.
+Read n then n integers; print the count of even numbers.
+Read n then n integers; print running prefix sums on one line separated by spaces.
+Read n then n integers; print the length of the longest strictly increasing contiguous subarray.
+Read n then n integers; print the length of the longest strictly decreasing contiguous subarray.
+Read n then n integers; print second largest distinct value or -1 if none.
+Read n then n integers; print 1 if the array is a palindrome, else 0.
+Read n then n integers; print the median (lower if even length).
+Read n then n integers; print the number of local maxima (strict).

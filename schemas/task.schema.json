@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Coding Task (IO mode)",
+  "type": "object",
+  "required": ["task_id", "language", "difficulty", "instruction", "mode", "canonical_solution", "tests"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "language": { "type": "string", "enum": ["Python","Fortran","COBOL","Ada","Octave","Prolog"] },
+    "difficulty": { "type": "string", "enum": ["easy","hard"] },
+    "instruction": { "type": "string" },
+    "prompt": { "type": "string" },
+    "mode": { "type": "string", "const": "io" },
+    "canonical_solution": { "type": "string" },
+    "tests": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["input", "output"],
+        "properties": {
+          "input": { "type": "string" },
+          "output": { "type": "string" }
+        }
+      }
+    },
+    "raw_generation": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,10 @@
+Read n then n intervals [l r] (inclusive), one per line; print total covered length of union.
+Read n then n intervals; print the maximum number of overlapping intervals at any point.
+Read n then n intervals; merge overlaps and print the number of merged intervals.
+Read n then n intervals; print the length covered by intervals with coverage ≥2.
+Read n then n intervals; print YES if any two overlap, else NO.
+Read n then n intervals; after merging, print all intervals on one line as "l-r" separated by spaces.
+Read n then n intervals; print the point with maximum coverage (smallest if tie).
+Read n then n intervals; given a query point q, print 1 if covered else 0.
+Read n then n intervals; print the total length not covered in [min_l, max_r].
+Read n then n intervals; print the number of disjoint pairs.

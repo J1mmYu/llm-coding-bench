@@ -1,0 +1,10 @@
+Read date yyyy-mm-dd; print the day-of-year (1..366).
+Read date yyyy-mm-dd; print YES if leap year else NO.
+Read yyyy-mm-dd then k; print the date after k days (ignore timezone, Gregorian).
+Read hh:mm:ss; print seconds since 00:00:00.
+Read two dates yyyy-mm-dd; print absolute difference in days.
+Read time hh:mm; print it in 12-hour format with AM/PM.
+Read yyyy-mm-dd; print the weekday assuming 1970-01-01 is Thursday.
+Read yyyy-mm-dd; print the number of days remaining in that year.
+Read date yyyy-mm-dd; print the previous date.
+Read date yyyy-mm-dd; print the next date.

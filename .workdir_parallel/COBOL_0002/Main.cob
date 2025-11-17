@@ -1,0 +1,16 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. REVERSE.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 S        PIC X(1000).
+       01 I        PIC S9(9) COMP-5.
+       01 L        PIC S9(9) COMP-5.
+       PROCEDURE DIVISION.
+           ACCEPT S
+           MOVE FUNCTION LENGTH(FUNCTION TRIM(S)) TO L
+           PERFORM VARYING I FROM L BY -1 UNTIL I < 1
+              DISPLAY S(I:1) WITH NO ADVANCING
+           END-PERFORM
+           DISPLAY ""
+           GOBACK.
+       END PROGRAM REVERSE.

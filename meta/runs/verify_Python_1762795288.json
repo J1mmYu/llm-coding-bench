@@ -1,0 +1,51 @@
+{
+  "lang": "Python",
+  "k": 10,
+  "model": "anthropic/claude-sonnet-4.5",
+  "started_at": 1762795183.1903698,
+  "items": [
+    {
+      "task_id": "Python/0001",
+      "status": "FAIL"
+    },
+    {
+      "task_id": "Python/0002",
+      "status": "OK"
+    },
+    {
+      "task_id": "Python/0003",
+      "status": "OK"
+    },
+    {
+      "task_id": "Python/0004",
+      "status": "FAIL"
+    },
+    {
+      "task_id": "Python/0005",
+      "status": "FAIL"
+    },
+    {
+      "task_id": "Python/0006",
+      "status": "OK"
+    },
+    {
+      "task_id": "Python/0007",
+      "status": "OK"
+    },
+    {
+      "task_id": "Python/0008",
+      "status": "OK"
+    },
+    {
+      "task_id": "Python/0009",
+      "status": "FAIL"
+    },
+    {
+      "task_id": "Python/0010",
+      "status": "OK"
+    }
+  ],
+  "finished_at": 1762795288.6846068,
+  "total": 10,
+  "verified": 6
+}

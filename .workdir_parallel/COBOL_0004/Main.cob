@@ -1,0 +1,67 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. BRACKET-CHECKER.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01  INPUT-LINE          PIC X(1000).
+01  LINE-LENGTH         PIC 9(4) COMP.
+01  STACK-AREA          PIC X(1000).
+01  STACK-PTR           PIC 9(4) COMP VALUE 0.
+01  IDX                 PIC 9(4) COMP.
+01  CURRENT-CHAR        PIC X.
+01  TOP-CHAR            PIC X.
+01  VALID-FLAG          PIC 9 VALUE 1.
+
+PROCEDURE DIVISION.
+MAIN-PROCEDURE.
+    ACCEPT INPUT-LINE.
+    MOVE FUNCTION LENGTH(FUNCTION TRIM(INPUT-LINE)) 
+         TO LINE-LENGTH.
+    
+    PERFORM VARYING IDX FROM 1 BY 1 UNTIL IDX > LINE-LENGTH
+        OR VALID-FLAG = 0
+        MOVE INPUT-LINE(IDX:1) TO CURRENT-CHAR
+        
+        EVALUATE CURRENT-CHAR
+            WHEN '('
+            WHEN '['
+            WHEN '{'
+                PERFORM PUSH-STACK
+            WHEN ')'
+                PERFORM POP-AND-CHECK-MATCH
+                IF TOP-CHAR NOT = '('
+                    MOVE 0 TO VALID-FLAG
+                END-IF
+            WHEN ']'
+                PERFORM POP-AND-CHECK-MATCH
+                IF TOP-CHAR NOT = '['
+                    MOVE 0 TO VALID-FLAG
+                END-IF
+            WHEN '}'
+                PERFORM POP-AND-CHECK-MATCH
+                IF TOP-CHAR NOT = '{'
+                    MOVE 0 TO VALID-FLAG
+                END-IF
+        END-EVALUATE
+    END-PERFORM.
+    
+    IF VALID-FLAG = 1 AND STACK-PTR = 0
+        DISPLAY 'YES'
+    ELSE
+        DISPLAY 'NO'
+    END-IF
+    
+    STOP RUN.
+
+PUSH-STACK.
+    ADD 1 TO STACK-PTR.
+    MOVE CURRENT-CHAR TO STACK-AREA(STACK-PTR:1).
+
+POP-AND-CHECK-MATCH.
+    IF STACK-PTR = 0
+        MOVE 0 TO VALID-FLAG
+        MOVE SPACE TO TOP-CHAR
+    ELSE
+        MOVE STACK-AREA(STACK-PTR:1) TO TOP-CHAR
+        SUBTRACT 1 FROM STACK-PTR
+    END-IF.

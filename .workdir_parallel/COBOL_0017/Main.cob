@@ -1,0 +1,57 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. LONGEST-SUBSTRING.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01  INPUT-STRING            PIC X(1000).
+01  STRING-LENGTH           PIC 9(4) COMP.
+01  MAX-LENGTH              PIC 9(4) COMP VALUE 0.
+01  CURRENT-LENGTH          PIC 9(4) COMP VALUE 0.
+01  I                       PIC 9(4) COMP.
+01  J                       PIC 9(4) COMP.
+01  K                       PIC 9(4) COMP.
+01  START-POS               PIC 9(4) COMP.
+01  FOUND-FLAG              PIC 9 VALUE 0.
+01  CURRENT-CHAR            PIC X.
+01  CHECK-CHAR              PIC X.
+
+PROCEDURE DIVISION.
+    ACCEPT INPUT-STRING.
+    
+    MOVE FUNCTION LENGTH(FUNCTION TRIM(INPUT-STRING)) 
+        TO STRING-LENGTH.
+    
+    IF STRING-LENGTH = 0
+        DISPLAY 0
+        STOP RUN.
+    
+    PERFORM VARYING I FROM 1 BY 1 UNTIL I > STRING-LENGTH
+        MOVE 0 TO CURRENT-LENGTH
+        MOVE I TO START-POS
+        
+        PERFORM VARYING J FROM I BY 1 UNTIL J > STRING-LENGTH
+            MOVE INPUT-STRING(J:1) TO CURRENT-CHAR
+            MOVE 0 TO FOUND-FLAG
+            
+            PERFORM VARYING K FROM START-POS BY 1 
+                UNTIL K >= J OR FOUND-FLAG = 1
+                MOVE INPUT-STRING(K:1) TO CHECK-CHAR
+                IF CURRENT-CHAR = CHECK-CHAR
+                    MOVE 1 TO FOUND-FLAG
+                END-IF
+            END-PERFORM
+            
+            IF FOUND-FLAG = 1
+                EXIT PERFORM
+            END-IF
+            
+            ADD 1 TO CURRENT-LENGTH
+        END-PERFORM
+        
+        IF CURRENT-LENGTH > MAX-LENGTH
+            MOVE CURRENT-LENGTH TO MAX-LENGTH
+        END-IF
+    END-PERFORM.
+    
+    DISPLAY MAX-LENGTH.
+    STOP RUN.

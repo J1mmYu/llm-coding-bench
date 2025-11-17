@@ -1,0 +1,15 @@
+Given n (1<=n<=2e5) and an array of n integers, print the length of the longest subarray with sum=0.
+Read a line and check balanced brackets for ()[]{} with nesting; print YES/NO.
+Read n and n integers; print the length of the longest increasing subsequence (not necessarily contiguous).
+Read a CSV line with quotes and commas; parse fields and print field count. Quotes may contain commas and escaped quotes "".
+Read a string s and integer k; print the lexicographically smallest substring of length k.
+Read n and then n intervals [l,r]; merge and output total covered length.
+Read a string; print 1 if it is a valid IPv4 address, else 0.
+Read a line; print word frequencies sorted by (-count, word).
+Given n,m and a grid of '.' and '#', count connected components (4-direction).
+Read a line; run-length encode (RLE) it as <char><count> without separators.
+Read two big integers (up to 10^500) as strings; print their sum.
+Given n,m and edges (1-indexed), output a topological ordering or print -1 if cycle.
+Read multiple lines until EOF; output the line with the maximum number of distinct characters (break ties by earliest).
+Read a line; evaluate a simple expression with + - * / and parentheses (integers, no unary minus), print result.
+Read string s; print length of the longest substring without repeating characters.
