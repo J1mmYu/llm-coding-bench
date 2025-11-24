@@ -1,6 +1,6 @@
 # scripts/add_task_manual.py  (REPLACE)
 import argparse, json, re, pathlib, sys
-from utils import sanitize_code, task_fingerprint
+from utils import sanitize_code, task_fingerprint, append_fp_index
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BENCH = ROOT / "data" / "incoming"
@@ -64,5 +64,6 @@ def main():
     with open(fp_out, "a", encoding="utf-8") as f:
         f.write(json.dumps(item, ensure_ascii=False) + "\n")
     print(f"Appended {item['task_id']} to {fp_out}")
+    append_fp_index(args.lang, fp)
 if __name__ == "__main__":
     main()

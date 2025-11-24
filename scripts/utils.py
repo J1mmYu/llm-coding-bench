@@ -39,7 +39,8 @@ def task_fingerprint(lang:str, instruction:str)->str:
 def _run(cmd, inp=None, timeout=10, cwd=None):
     try:
         p = subprocess.run(shlex.split(cmd), input=inp, text=True,
-                           capture_output=True, timeout=timeout, cwd=cwd)
+                           capture_output=True, timeout=timeout, cwd=cwd,
+                           encoding="utf-8", errors="replace",)   # 碰到非法字节，用 � 替换，不要抛异常)
         return p.returncode, p.stdout, p.stderr
     except subprocess.TimeoutExpired:
         return -999, "", "TIMEOUT"
@@ -60,3 +61,20 @@ def eval_code_on_tests(lang:str, code:str, tests:list, timeout=10):
             if rc==0 and out.strip()==t["output"].strip(): passed += 1
             else: return {"ok": False, "status":"FAIL", "last":{"rc":rc,"out":out,"err":err}}
         return {"ok": True, "status":"OK", "passed":passed, "total":len(tests)}
+
+IDX_DIR = ROOT / "data" / "index"
+IDX_DIR.mkdir(parents=True, exist_ok=True)
+
+def fp_index_file(lang: str) -> pathlib.Path:
+    return IDX_DIR / f"fp_{lang}.txt"
+
+def load_fp_index(lang: str) -> set[str]:
+    idx = fp_index_file(lang)
+    if idx.exists():
+        return set(idx.read_text(encoding="utf-8").splitlines())
+    return set()
+
+def append_fp_index(lang: str, fp: str) -> None:
+    idx = fp_index_file(lang)
+    with idx.open("a", encoding="utf-8") as f:
+        f.write(fp + "\n")

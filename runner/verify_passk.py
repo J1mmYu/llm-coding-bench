@@ -1,5 +1,4 @@
 import os, sys, json, time, pathlib, argparse, random
-from common import eval_code_on_tests, ROOT
 
 HERE = pathlib.Path(__file__).resolve()
 PROJECT_ROOT = HERE.parents[1]            # 仓库根目录
@@ -14,20 +13,94 @@ TMP_VERIFY = PROJECT_ROOT / ".tmp_verify"
 TMP_VERIFY.mkdir(parents=True, exist_ok=True)
 
 # ---- 统一从 utils 引用工具函数（不要再用 from scripts.utils ...）----
-from utils import sanitize_code, eval_code_on_tests, LANG, _run
+from utils import sanitize_code, eval_code_on_tests, LANG, _run, ROOT
+import urllib.request, urllib.error, http.client, time, json, os, pathlib, sys
+# ... 其他 import 保留
 
 API = "https://openrouter.ai/api/v1/chat/completions"
 KEY = os.environ.get("OPENROUTER_API_KEY")
 
-def chat(model, messages):
-    import urllib.request
-    body = json.dumps({"model": model, "messages": messages}).encode()
-    req = urllib.request.Request(API, data=body, method="POST",
-        headers={"Content-Type":"application/json","Authorization":f"Bearer {KEY}",
-                 "HTTP-Referer":"http://localhost","X-Title":"llm-coding-bench"})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        j = json.loads(r.read().decode())
-    return j["choices"][0]["message"]["content"]
+def chat(model, messages, temperature=0.7, max_retries=3):
+    if not KEY:
+        raise RuntimeError("OPENROUTER_API_KEY is not set")
+
+    body = json.dumps({
+        "model": model,
+        "messages": messages,
+        "temperature": temperature
+    }).encode("utf-8")
+
+    for attempt in range(max_retries):
+        req = urllib.request.Request(
+            API,
+            data=body,
+            method="POST",
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {KEY}",
+                "HTTP-Referer": "http://localhost",
+                "X-Title": "llm-coding-bench",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=90) as r:
+                raw = r.read()
+            j = json.loads(raw.decode("utf-8", errors="replace"))
+            return j["choices"][0]["message"]["content"]
+        except (urllib.error.HTTPError,
+                urllib.error.URLError,
+                http.client.IncompleteRead) as e:
+            # 最后一轮还失败就抛出去，让上层决定怎么处理
+            if attempt == max_retries - 1:
+                raise
+            # 否则稍微等一会再重试
+            wait = 2 * (attempt + 1)
+            print(f"[chat] {model} attempt {attempt+1} failed: {e} (retry in {wait}s)",
+                  file=sys.stderr)
+            time.sleep(wait)
+
+
+API = "https://openrouter.ai/api/v1/chat/completions"
+KEY = os.environ.get("OPENROUTER_API_KEY")
+
+def chat(model, messages, temperature=0.7, max_retries=3):
+    if not KEY:
+        raise RuntimeError("OPENROUTER_API_KEY is not set")
+
+    body = json.dumps({
+        "model": model,
+        "messages": messages,
+        "temperature": temperature
+    }).encode("utf-8")
+
+    for attempt in range(max_retries):
+        req = urllib.request.Request(
+            API,
+            data=body,
+            method="POST",
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {KEY}",
+                "HTTP-Referer": "http://localhost",
+                "X-Title": "llm-coding-bench",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=90) as r:
+                raw = r.read()
+            j = json.loads(raw.decode("utf-8", errors="replace"))
+            return j["choices"][0]["message"]["content"]
+        except (urllib.error.HTTPError,
+                urllib.error.URLError,
+                http.client.IncompleteRead) as e:
+            # 最后一轮还失败就抛出去，让上层决定怎么处理
+            if attempt == max_retries - 1:
+                raise
+            # 否则稍微等一会再重试
+            wait = 2 * (attempt + 1)
+            print(f"[chat] {model} attempt {attempt+1} failed: {e} (retry in {wait}s)",
+                  file=sys.stderr)
+            time.sleep(wait)
 
 def load_jsonl(fp):
     for line in pathlib.Path(fp).read_text(encoding="utf-8", errors="replace").splitlines():
@@ -111,10 +184,22 @@ def main():
     ver_file = pathlib.Path(args.verified_out) / f"{args.lang}.jsonl"
     unv_file = pathlib.Path(args.unverified_out) / f"{args.lang}.jsonl"
 
+    already_verified = set()
+    if ver_file.exists():
+        for obj in load_jsonl(ver_file):
+            v = obj.get("verification", {})
+            if v.get("verified"):
+                already_verified.add(obj["task_id"])
+    print(f"[verify_passk] Found {len(already_verified)} already-verified tasks in {ver_file}")
+
     report = {"lang": args.lang, "k": args.k, "model": args.model, "started_at": time.time(), "items":[]}
     total = okcnt = 0
     for task in load_jsonl(src_file):
         total += 1
+        if task["task_id"] in already_verified:
+            # 已经通过验证的题直接跳过，不再重复写入
+            report["items"].append({"task_id": task["task_id"], "status":"SKIP(already)"})
+            continue
         tests = task["tests"]; instr = task["instruction"]
         attempts = []
         # 0) 可选：先拿现有 canonical_solution 试一次
@@ -122,6 +207,7 @@ def main():
             r0 = eval_code_on_tests(args.lang, task["canonical_solution"], tests)
             attempts.append({"kind":"existing", "ok": r0["ok"], "status": r0["status"]})
             if r0["ok"]:
+                task["canonical_solution"] = sanitize_code(task["canonical_solution"])
                 task["verification"] = {"verified": True, "pass_k": f"pass@{args.k}", "verifier_model": "existing",
                                         "k": args.k, "seeds": [], "attempts": 1, "ts": time.time()}
                 append_jsonl(ver_file, task); okcnt += 1
@@ -132,11 +218,18 @@ def main():
         fail_status = None; fail_input = None; fail_stderr = ""
         for i in range(args.start_seed, args.start_seed + args.k):
             prompt_now = build_prompt(instr, args.feedback, fail_status, fail_input, fail_stderr)
-            code = gen_solution(args.model, args.lang, prompt_now, seed=i)
+            try:
+                code = gen_solution(args.model, args.lang, prompt_now, seed=i)
+            except Exception as e:
+                # 模型调用失败（网络问题、IncompleteRead 等），这次尝试就算作失败
+                print(f"[{task['task_id']}] model call failed on attempt {i}: {e}",
+                    file=sys.stderr)
+                last_err = str(e)
+                continue
             r = eval_code_on_tests(args.lang, code, tests)
             attempts.append({"kind":"gen", "i": i, "ok": r["ok"], "status": r["status"]})
             if r["ok"]:
-                verified = True; passed_code = code; break
+                verified = True; passed_code = sanitize_code(code); break
             if args.feedback != "none":
                 fail_status, fail_input, fail_stderr = first_failure_detail(args.lang, code, tests)
 

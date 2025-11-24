@@ -22,21 +22,113 @@ def gen_solution(model, lang, instruction):
     return sanitize_code(code)
 
 def gen_tests(model, lang, instruction, min_cases=8):
-    sp = (f"You are a senior QA for {lang}. Return ONLY a JSON array of IO tests: "
-          f"each item has 'input' and 'output'. At least {min_cases} diverse cases. "
-          f"Use exact outputs with trailing newlines if needed. No comments.")
-    t = chat(model, [{"role":"system","content":sp},{"role":"user","content":instruction}])
-    for _ in range(2):
+    import json
+
+    def try_parse_tests(text: str):
+        """尽力从 LLM 输出里抠出符合要求的 JSON 数组。"""
+        # 1) 直接 parse
         try:
-            arr = json.loads(t)
-            if isinstance(arr, list) and all("input" in x and "output" in x for x in arr):
+            arr = json.loads(text)
+            if isinstance(arr, list) and all(
+                isinstance(x, dict) and "input" in x and "output" in x for x in arr
+            ):
                 return arr
-        except: pass
-        # 严格 JSON 重试
-        t = chat(model, [
-            {"role":"system","content":"Return ONLY valid JSON like [{\"input\":\"...\",\"output\":\"...\"}] with no trailing text."},
-            {"role":"user","content":instruction}
-        ])
+        except Exception:
+            pass
+
+        stripped = text.strip()
+
+        # 2) 处理 ```json ... ``` 或 ``` ... ``` 代码块
+        if stripped.startswith("```"):
+            first_nl = stripped.find("\n")
+            inner = stripped[3:] if first_nl == -1 else stripped[first_nl + 1 :]
+            end_idx = inner.rfind("```")
+            if end_idx != -1:
+                inner = inner[:end_idx]
+            try:
+                arr = json.loads(inner)
+                if isinstance(arr, list) and all(
+                    isinstance(x, dict) and "input" in x and "output" in x for x in arr
+                ):
+                    return arr
+            except Exception:
+                pass
+
+        # 3) 尝试截取第一个 [ .. ] 区间
+        start = text.find("[")
+        end = text.rfind("]")
+        if start != -1 and end != -1 and end > start:
+            candidate = text[start : end + 1]
+            try:
+                arr = json.loads(candidate)
+                if isinstance(arr, list) and all(
+                    isinstance(x, dict) and "input" in x and "output" in x for x in arr
+                ):
+                    return arr
+            except Exception:
+                pass
+
+        return None
+
+    sp = (
+        f"You are a senior QA for {lang}. "
+        "Return ONLY a JSON array of I/O tests.\n"
+        "Each item must be an object with exactly two keys: 'input' and 'output'.\n"
+        "The user message describes the problem and the input format.\n\n"
+        "Requirements:\n"
+        f"- Provide at least {min_cases} diverse test cases, including edge cases.\n"
+        "- 'input' is the exact text sent to stdin (may contain '\\n').\n"
+        "- 'output' is the exact text printed to stdout by a correct solution.\n"
+        "- Use ONE CONSISTENT input layout across all tests that matches the problem description.\n"
+        "  For example, if the problem says 'read n then n integers', then in EVERY test:\n"
+        "    * put n alone on the first line, and\n"
+        "    * put the n integers on the next line.\n"
+        "- Do NOT mix different layouts for the same information "
+        "(e.g. sometimes all integers on one line, sometimes one per line).\n"
+        "- Do not add leading/trailing blank lines. End each input and output with a single newline.\n"
+        "- Output must be valid JSON only (no comments, no markdown).\n"
+    )
+
+    # 第一次尝试
+    t = chat(
+        model,
+        [
+            {"role": "system", "content": sp},
+            {"role": "user", "content": instruction},
+        ],
+    )
+
+    for attempt in range(3):
+        arr = try_parse_tests(t)
+        if arr is not None:
+            # 可选：确保条数 >= min_cases，不够就再问一轮
+            if len(arr) < min_cases:
+                t = chat(
+                    model,
+                    [
+                        {"role": "system", "content": sp},
+                        {"role": "user", "content": instruction},
+                    ],
+                )
+                continue
+            return arr
+
+        # 还不行 → 换一个更严厉的提示再问一次
+        t = chat(
+            model,
+            [
+                {
+                    "role": "system",
+                    "content": (
+                        "Return ONLY valid JSON for an array of I/O tests like "
+                        '[{"input":"...","output":"..."}]. '
+                        "No code fences, no markdown, no explanation text."
+                    ),
+                },
+                {"role": "user", "content": instruction},
+            ],
+        )
+
     raise RuntimeError("Test generation failed (JSON)")
 
 def augment_tests_with_oracle(lang, code, tests, target=10):
