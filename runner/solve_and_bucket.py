@@ -17,18 +17,14 @@ KEY = os.environ.get("OPENROUTER_API_KEY")
 
 
 MODELS = [
-    "openai/gpt-5",#5.1
-    "openai/gpt-4o-mini",#
-    "google/gemini-2.5-pro",
-    "google/gemini-2.5-flash",#
-    "qwen/qwen-2.5-72b-instruct", #
-    "qwen/qwen3-max",
-    "meta-llama/llama-3.1-70b-instruct",
+    "openai/gpt-5.1",
+    "google/gemini-3-pro-preview",
+    "qwen/qwen3-next-80b-a3b-thinking", #qwen3-max
     "meta-llama/llama-4-maverick"
     "anthropic/claude-sonnet-4.5",
-    "anthropic/claude-haiku-4.5",#
-    "x-ai/grok-code-fast-1",
-    "x-ai/grok-4-fast", #GLM 4.6, deepseek
+    "x-ai/grok-4.1-fast",
+    "z-ai/glm-4.6",
+    "deepseek/deepseek-v3.1-terminus"
 ]
 
 def chat(model, messages, temperature=0.7):

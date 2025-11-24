@@ -34,8 +34,11 @@ def load_families(dir_path):
 def call_ab(lang, diff, modelA, modelB, instr):
     cmd = [sys.executable, str(AB), lang, diff, modelA, modelB, instr,
         "--min_cases", str(min_cases), "--target_cases", str(target_cases)]
-    p = subprocess.run(cmd,
-                       capture_output=True, text=True, timeout=300)
+    try:
+        p = subprocess.run(cmd,
+                        capture_output=True, text=True, timeout=300)
+    except subprocess.TimeoutExpired as e:
+        return None, f"TimeoutExpired: {e}"
     if p.returncode!=0: return None, p.stderr[:200]
     try:
         return json.loads(p.stdout.strip()), ""
